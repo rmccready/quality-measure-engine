@@ -40,7 +40,7 @@ namespace :mongo do
    loader.save_bundle(bundle_dir, measures_dir)
   end
   
-  desc 'Clear database and road each measure and its sample patient files'
+  desc 'Clear database and load each measure and its sample patient files'
   task :reload => [:reload_records, :reload_bundle]
   
   desc 'Seed the query cache by calculating the results for all measures'

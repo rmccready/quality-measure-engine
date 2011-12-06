@@ -84,20 +84,20 @@ module QME
 
       def filter_parameters
         results = {}
-        conditions = []
-        if(filters = @parameter_values['filters'])
-          if (filters['providers'] && filters['providers'].size > 0)
-            providers = filters['providers'].map {|provider_id| BSON::ObjectId(provider_id) if provider_id }
-            conditions << provider_queries(providers, @parameter_values['effective_date'])
-          end
-          if (filters['races_ethnicities'] && filters['races_ethnicities'].size > 0)
-            conditions << race_ethnicity_queries(filters['races_ethnicities'])
-          end
-          if (filters['genders'] && filters['genders'].size > 0)
-            conditions << {'value.gender' => {'$in' => filters['genders']}}
-          end
-        end
-        results.merge!({'$and'=>conditions}) if conditions.length > 0
+        # conditions = []
+        # if(filters = @parameter_values['filters'])
+        #   if (filters['providers'] && filters['providers'].size > 0)
+        #     providers = filters['providers'].map {|provider_id| BSON::ObjectId(provider_id) if provider_id }
+        #     conditions << provider_queries(providers, @parameter_values['effective_date'])
+        #   end
+        #   if (filters['races_ethnicities'] && filters['races_ethnicities'].size > 0)
+        #     conditions << race_ethnicity_queries(filters['races_ethnicities'])
+        #   end
+        #   if (filters['genders'] && filters['genders'].size > 0)
+        #     conditions << {'value.gender' => {'$in' => filters['genders']}}
+        #   end
+        # end
+        # results.merge!({'$and'=>conditions}) if conditions.length > 0
         results
       end
       def provider_queries(provider_ids, effective_date)
